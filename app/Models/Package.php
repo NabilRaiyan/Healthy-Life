@@ -9,5 +9,5 @@ class Package extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name", "price", "duration_months"];
+    protected $fillable = ["name", "price", "duration_days"];
 }

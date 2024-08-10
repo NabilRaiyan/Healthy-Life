@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('route_name');
             $table->string('required_plan');
             $table->boolean('active')->default(true);
-            $table->longText('description');
-
+            $table->string('description');
             $table->timestamps();
         });
     }

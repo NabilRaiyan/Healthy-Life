@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Features;
+use App\Models\Feature;
 use App\Models\Package;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'gender' => fake()->randomElement(['male', 'female']),
         ]);
 
-        Features::factory()->create([
+        Feature::create([
             'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271861901323931699/filename.png?ex=66b8e133&is=66b78fb3&hm=c9ed8a4dc04c86f528bfcfbda4141cabdadeaf17ef6e3ff02ed28f3f6832b65d&',
             'route_name' => 'healthCalculator.index',
             'name' => 'Fitness & Health Calculators',
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Features::factory()->create([
+        Feature::create([
             'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271863185200386120/filename.png?ex=66b8e265&is=66b790e5&hm=2bf012b795e5ceee92fd764ce0987bdab53b73a4b9e0fb97775a43abbb5fc4ad&',
             'route_name' => 'personalDiet.index',
             'name' => 'Personal Diet',
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'active' => true,
         ]);
 
-        Features::factory()->create([
+        Feature::create([
             'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271863185200386120/filename.png?ex=66b8e265&is=66b790e5&hm=2bf012b795e5ceee92fd764ce0987bdab53b73a4b9e0fb97775a43abbb5fc4ad&',
             'route_name' => 'personalWorkout.index',
             'name' => 'Personal Workout',
@@ -51,23 +51,28 @@ class DatabaseSeeder extends Seeder
             'active' => true,
         ]);
 
-        Package::factory()->create([
+        Package::create([
             'name' =>'Basic Fit',
-            'price' =>0,
-            'duration_months' =>1,
-
+            'price' => 5,
+            'description' => 'Basic Fit offers a straightforward and accessible entry into fitness with essential features like BMI calculation and daily workout tips. Ideal for those starting their wellness journey, it provides a solid foundation for tracking progress and staying motivated.',
+            'duration_days' => 30,
         ]);
-
-        Package::factory()->create([
+        
+        Package::create([
             'name' =>'Pro Athlete',
-            'price' =>5,
-            'duration_months' =>1,
+            'price' => 10,
+            'description' => 'The Pro Athlete package offers a comprehensive fitness experience with personalized workout plans and advanced tracking features. It includes detailed body fat analysis, customized nutrition advice, and access to premium health resources for optimized performance and well-being.',
+            'duration_days' => 30,
         ]);
 
-        Package::factory()->create([
+        Package::create([
             'name' =>'Elite Wellness',
-            'price' =>15,
-            'duration_months' =>1,
+            'price' => 15,
+            'description' => 'Elite Wellness is a premium fitness package designed to provide a comprehensive wellness experience with advanced features. It includes personalized workout plans, detailed body analysis, access to a virtual personal trainer, and integration with wearable devices for tracking your health journey.',
+            'duration_days' => 30,
         ]);
+
+       
+
     }
 }
