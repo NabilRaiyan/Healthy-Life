@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('description');
+            $table->decimal('price', 10, 2);
+            $table->integer('duration_months');
             $table->timestamps();
         });
     }
