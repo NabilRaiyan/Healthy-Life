@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Raiyan',
             'email' => 'raiyan2@gmail.com',
             'password' => bcrypt('123.321Aa'),
-            'gender' => fake()->randomElement(['male', 'female']),
         ]);
 
         Feature::create([
@@ -57,7 +56,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Basic Fit offers a straightforward and accessible entry into fitness with essential features like BMI calculation and daily workout tips. Ideal for those starting their wellness journey, it provides a solid foundation for tracking progress and staying motivated.',
             'duration_days' => 30,
         ]);
-        
+
         Package::create([
             'name' =>'Pro Athlete',
             'price' => 10,
