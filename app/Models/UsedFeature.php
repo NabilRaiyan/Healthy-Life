@@ -23,4 +23,9 @@ class UsedFeature extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function feature()
+    {
+        return $this->belongsTo(Features::class);
+    }
+
 }
