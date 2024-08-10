@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Features extends Model
 {
     use HasFactory;
+
+
+    protected $fillable = ["image", "route_name", "required_plan", "description", "name", "active"];
+
 }

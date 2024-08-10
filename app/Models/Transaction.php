@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["status", "price", "duration_months", "session_id", "user_id", "package_id"];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

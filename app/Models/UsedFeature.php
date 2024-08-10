@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class UsedFeature extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["feature_id", "user_id", "subscribed_plan"];
+
+    protected function casts():array
+    {
+        return [
+            'data'=> 'array',
+        ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
