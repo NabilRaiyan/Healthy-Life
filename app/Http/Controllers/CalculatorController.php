@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 use App\Http\Resources\FeatureResource;
 use App\Models\Feature;
 use App\Models\UsedFeature;
 use Illuminate\Http\Request;
+
+// require './vendor/autoload.php';
 
 class CalculatorController extends Controller
 {
