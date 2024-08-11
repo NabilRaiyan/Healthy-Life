@@ -23,7 +23,6 @@ class DecreaseDurationCommand extends Command
         foreach ($users as $user) {
             $user->decreaseDurationDays(1); // Decrease duration by 1 day
         }
-
         $this->info('Available duration decreased by 1 day for all users.');
     }
 }

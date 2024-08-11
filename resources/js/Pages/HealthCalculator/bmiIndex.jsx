@@ -14,6 +14,7 @@ export default function Index({feature, answer, children})
         height: "",
     });
 
+    
     const submit = (e) =>{
         e.preventDefault();
 
