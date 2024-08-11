@@ -7,6 +7,13 @@ import { Link } from '@inertiajs/react';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    function formatText(text) {
+        // Replace uppercase letters with space + the same letter, then capitalize the first letter
+        return text
+            .replace(/([A-Z])/g, ' $1') // Add a space before each uppercase letter
+            .replace(/^./, str => str.toUpperCase()) // Capitalize the first letter of the string
+            .trim(); // Remove any leading or trailing spaces
+    }
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -34,6 +41,12 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
+                        <span className='text-gray-600 flex gap-3 font-mono mr-3'>
+                             Current Plan: {formatText(user.subscribed_plan)}
+                        </span>
+                        <Link href='/' className='text-gray-700 py-1 px-3 rounded border transition-colors hover:text-white hover:bg-gray-800'>
+                            Get New Plan
+                        </Link>
                             <div className="ms-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>

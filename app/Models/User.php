@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Observers\UserObserver;
+use DateTime;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,4 +50,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function decreaseDurationDays(int $days): self
+    {
+        // Ensure that the available_duration does not go below 0
+        $this->available_duration = max(0, $this->available_duration - $days);
+
+        // Save the updated duration
+        $this->save();
+
+        return $this;
+    }
+   
 }

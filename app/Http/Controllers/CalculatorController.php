@@ -7,21 +7,20 @@ use App\Http\Resources\FeatureResource;
 use App\Models\Feature;
 use App\Models\UsedFeature;
 use Illuminate\Http\Request;
-
-// require './vendor/autoload.php';
+use DateTime;
 
 class CalculatorController extends Controller
 {
-
-
     public ?Feature $feature = null;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
+        $user = $request->user();
         $this->feature = Feature::where("route_name", "healthCalculator.index")
             ->where('active', true)
-            ->firstOrFail();
+            ->firstOrFail();              
     }
+    
 
     public function index()
     {
@@ -29,6 +28,7 @@ class CalculatorController extends Controller
             'feature' => new FeatureResource($this->feature),
             'answer' => session('answer'),
         ]);
+        
     }
 
     public function bmiCalculate(Request $request)
@@ -47,8 +47,7 @@ class CalculatorController extends Controller
 
         echo $weight;
         echo $height;
-
-        
+                
         $client = new Client();
         $response = $client->request('POST', 'https://bmi-calculator-api.p.rapidapi.com/', [
             'headers' => [
@@ -64,7 +63,7 @@ class CalculatorController extends Controller
 
         $body = $response->getBody();
         $data = json_decode($body, true);
-        print_r($data);
+        
 
         UsedFeature::create([
             'feature_id' => $this->feature->id,

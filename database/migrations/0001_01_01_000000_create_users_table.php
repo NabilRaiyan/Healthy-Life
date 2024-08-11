@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('available_duration');
+            $table->string('subscribed_plan');
             $table->rememberToken();
             $table->timestamps();
         });
