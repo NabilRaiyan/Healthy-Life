@@ -25,9 +25,9 @@ class CalculatorController extends Controller
 
     public function index()
     {
-        return inertia('HealthCalculator/Index', [
+        return inertia('HealthCalculator/bmiIndex', [
             'feature' => new FeatureResource($this->feature),
-            'answer' => session('answer') ?? [],
+            'answer' => session('answer'),
         ]);
     }
 
@@ -45,31 +45,33 @@ class CalculatorController extends Controller
         $weight = (float) $data['weight'];
         $height = (float) $data['height'];
 
-        UsedFeature::create([
-            'feature_id' => $this->feature->id,
-            'user_id' =>$user->id,
-            'subscribed_plan' => $this->feature->subscribed_plan,
-            'data' => $data,            
-        ]);
+        echo $weight;
+        echo $height;
 
-        $postData = [
-            'weight' => $weight,
-            'height' => $height,
-        ];
-
-
+        
         $client = new Client();
         $response = $client->request('POST', 'https://bmi-calculator-api.p.rapidapi.com/', [
             'headers' => [
-                'Accept' => 'application/json',
-                'Authorization' => '1c1849698dmsh4ead14c76df84eep1bcf08jsnb8940baf8414',
+                'Content-Type' => 'application/json',
+                'X-Rapidapi-Key' => '1c1849698dmsh4ead14c76df84eep1bcf08jsnb8940baf8414',
+                'Host'=> 'bmi-calculator-api.p.rapidapi.com',
             ],
-            'form_params' => $postData,
+            'json' => [
+                'weight' => $weight,
+                'height' => $height,
+            ],
         ]);
 
         $body = $response->getBody();
         $data = json_decode($body, true);
         print_r($data);
+
+        UsedFeature::create([
+            'feature_id' => $this->feature->id,
+            'user_id' =>$user->id,
+            'subscribed_plan' => $this->feature->required_plan,
+            'data' => $data,            
+        ]);
 
         return to_route('healthCalculator.index')->with('answer', $data);
     }
