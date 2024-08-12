@@ -50,16 +50,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public function decreaseDurationDays(int $days): self
-    {
-        // Ensure that the available_duration does not go below 0
-        $this->available_duration = max(0, $this->available_duration - $days);
-
-        // Save the updated duration
-        $this->save();
-
-        return $this;
-    }
-   
+ 
 }
