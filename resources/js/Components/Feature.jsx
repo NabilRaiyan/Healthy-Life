@@ -25,16 +25,6 @@ export default function Feature({feature, answer, children})
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        {
-                            answer !== null && (
-                                <div className="px-5 py-5 text-white mb-4 rounded bg-emerald-600 text-xl">
-                                    Your BMI is: {answer.bmi} &
-                                    Your body type is: {answer.category}
-                                    {/* <pre>{JSON.stringify(answer, null, 2)}</pre> */}
-                                </div>
-                               
-                            )
-                        }
                         <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg relative">
                             {availableDuration <= 0 &&(
                                 <div className="absolute left-0 right-0 bottom-0 top-0 z-20 flex flex-col items-center justify-center bg-white/70 gap-3">
