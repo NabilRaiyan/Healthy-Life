@@ -1,11 +1,10 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, usePage } from '@inertiajs/react';
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import InputLabel from "@/Components/InputLabel";
 import {useForm} from "@inertiajs/react";
 import Feature from "@/Components/Feature";
+
 
 export default function Index({feature, answer, children})
 {
@@ -26,6 +25,7 @@ export default function Index({feature, answer, children})
     };
 
     return (
+        
         <Feature feature={feature} answer={answer}>
         <h1 className="text-xl dark:text-white text-gray-700 mt-3 ml-8">BMI Calculator</h1>
         
@@ -57,6 +57,7 @@ export default function Index({feature, answer, children})
                     {
                         answer !== null && (
                             <div className="px-6 py-5 text-white mb-4 rounded bg-gray-800">
+                            
                                 <h5 className="text-white text-2xl font-serif ml-4 mb-3">Result: </h5>
                                 <p className="ml-4 text-xl font-sans text-cyan-300">BMI = {answer.bmi} kg/m<sup>2</sup></p>
                                 <p className="ml-4 text-xl font-sans text-cyan-300">Category = {answer.category}</p>
