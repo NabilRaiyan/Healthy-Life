@@ -52,7 +52,6 @@ export default function Index({feature, answer, children})
                 </div>
                 {children}
             </form>
-
             {/* Showing the answer */}
                     {
                         answer !== null && (
