@@ -26,6 +26,9 @@ class CalculatorController extends Controller
         return inertia('HealthCalculator/bmiIndex', [
             'feature' => new FeatureResource($this->feature),
             'answer' => session('answer'),
+            'lowWeight' =>session('weightLow'),
+            'highWeight' =>session('weightHigh'),
+
         ]);
         
     }
@@ -70,10 +73,15 @@ class CalculatorController extends Controller
             'data' => $data,            
         ]);
 
+         $healthy_weightLow = 18.5 * ($height*$height);
+         $healthy_weightHigh = 24.5 * ($height*$height);
+
         return to_route('healthCalculator.index')->with([
             'answer' => $data,
             'weight' => $weight,
-          
+            'weightLow' => $healthy_weightLow,
+            'weightHigh' => $healthy_weightHigh,
+
         ]);  
     }
 
