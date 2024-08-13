@@ -76,6 +76,10 @@ class CalculatorController extends Controller
          $healthy_weightLow = 18.5 * ($height*$height);
          $healthy_weightHigh = 24.5 * ($height*$height);
 
+         $healthy_weightLow = number_format((float)$healthy_weightLow, 0, '.', '');
+         $healthy_weightHigh = number_format((float)$healthy_weightHigh, 0, '.', '');
+
+
         return to_route('healthCalculator.index')->with([
             'answer' => $data,
             'weight' => $weight,
