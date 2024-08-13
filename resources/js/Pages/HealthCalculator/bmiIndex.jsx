@@ -5,9 +5,8 @@ import InputLabel from "@/Components/InputLabel";
 import { useForm } from "@inertiajs/react";
 import Feature from "@/Components/Feature";
 import { GoDotFill } from "react-icons/go";
-import Table from 'react-bootstrap/Table';
 import { Bar, BarChart, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
-
+import Footer from "@/Components/Footer";
 export default function Index({ feature, answer, children, lowWeight, highWeight }) {
     const { data, reset, processing, setData, post, errors } = useForm({
         weight: "",
@@ -161,7 +160,7 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
                 <h1 className="ml-3 font-serif mt-6 mb-4">BMI table for adults</h1>
                 <p className="text-[0.9rem] ml-3 justify-center mt-6 text-gray-100 font-serif mb-[2rem]">This is the World Health Organization's (WHO) recommended body weight based on BMI values for adults. It is used for both men and women, age 20 or older.</p>
                 {/* bmi table chart */}
-                <table className="w-1/3 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border mb-6 ml-4">
+                <table className="w-1/4 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border mb-6 ml-4">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-gray-500">
                         <tr className="text-nowrap p-10 border">
                             <th className="text-white p-2">Classification</th>
@@ -213,7 +212,7 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
                     </tbody>
                 </table>
             </div>
-
+            <Footer />
         </Feature>
     );
 }
