@@ -7,6 +7,8 @@ import Feature from "@/Components/Feature";
 import { GoDotFill } from "react-icons/go";
 import { Bar, BarChart, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import Footer from "@/Components/Footer";
+import MoreLink from "@/Components/MoreLink";
+
 export default function Index({ feature, answer, children, lowWeight, highWeight }) {
     const { data, reset, processing, setData, post, errors } = useForm({
         weight: "",
@@ -212,6 +214,7 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
                     </tbody>
                 </table>
             </div>
+            <MoreLink />
             <Footer />
         </Feature>
     );
