@@ -20,6 +20,6 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "recharts": "^2.12.7"
+        "recharts": "^2.13.0-alpha.4"
     }
 }
