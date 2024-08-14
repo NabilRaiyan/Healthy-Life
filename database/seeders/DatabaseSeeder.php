@@ -30,6 +30,32 @@ class DatabaseSeeder extends Seeder
             'required_plan' => 'basicFit',
             'active' => true,
         ]);
+        Feature::create([
+            'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271861901323931699/filename.png?ex=66b8e133&is=66b78fb3&hm=c9ed8a4dc04c86f528bfcfbda4141cabdadeaf17ef6e3ff02ed28f3f6832b65d&',
+            'route_name' => 'healthCalculator.fatIndex',
+            'name' => 'Fitness & Health Calculators',
+            'description' => 'Fitness & Health Calculators is a comprehensive tool designed to help you easily assess your health and fitness levels. With features like BMI calculation, body fat analysis, and more, it empowers you to make informed decisions on your wellness journey.',
+            'required_plan' => 'basicFit',
+            'active' => true,
+        ]);
+
+        Feature::create([
+            'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271861901323931699/filename.png?ex=66b8e133&is=66b78fb3&hm=c9ed8a4dc04c86f528bfcfbda4141cabdadeaf17ef6e3ff02ed28f3f6832b65d&',
+            'route_name' => 'healthCalculator.bmrIndex',
+            'name' => 'Fitness & Health Calculators',
+            'description' => 'Fitness & Health Calculators is a comprehensive tool designed to help you easily assess your health and fitness levels. With features like BMI calculation, body fat analysis, and more, it empowers you to make informed decisions on your wellness journey.',
+            'required_plan' => 'basicFit',
+            'active' => true,
+        ]);
+
+        Feature::create([
+            'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271861901323931699/filename.png?ex=66b8e133&is=66b78fb3&hm=c9ed8a4dc04c86f528bfcfbda4141cabdadeaf17ef6e3ff02ed28f3f6832b65d&',
+            'route_name' => 'healthCalculator.calorieIndex',
+            'name' => 'Fitness & Health Calculators',
+            'description' => 'Fitness & Health Calculators is a comprehensive tool designed to help you easily assess your health and fitness levels. With features like BMI calculation, body fat analysis, and more, it empowers you to make informed decisions on your wellness journey.',
+            'required_plan' => 'basicFit',
+            'active' => true,
+        ]);
 
 
         Feature::create([
