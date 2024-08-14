@@ -4,7 +4,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import InputLabel from "@/Components/InputLabel";
 import { useForm } from "@inertiajs/react";
 import Feature from "@/Components/Feature";
-import { GoDotFill } from "react-icons/go";
+import { FaArrowDown } from "react-icons/fa";
 import { Bar, BarChart, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import Footer from "@/Components/Footer";
 import MoreLink from "@/Components/MoreLink";
@@ -94,7 +94,7 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
             {/* Showing the answer */}
             {
                 answer !== null && (
-                    <div className="px-6 py-5 text-white mb-4 rounded bg-gray-800">
+                    <div className="px-6 py-5 text-white mb-4 rounded bg-gray-800 font-roboto">
                         <h5 className="text-white text-2xl font-serif ml-4 mb-3">Result: </h5>
                         <p className="ml-4 text-xl font-sans text-cyan-300">BMI = {answer.bmi} kg/m<sup>2</sup></p>
                         <p className="ml-4 text-xl font-sans text-cyan-300">Category = {answer.category}</p>
@@ -110,7 +110,7 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
                    
                             <div className="mt-6" style={{
                                 marginLeft: `${position}rem`, fontSize: `${1.3}rem`, color: `${color}`}}>
-                            <GoDotFill className="ml-12" />
+                            <FaArrowDown className="ml-12" />
 
                             </div>
                             <BarChart
@@ -154,15 +154,15 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
 
             {/* About BMI Information */}
             <div className="dark:text-white font-sans text-xl ml-7">
-                <h1 className="ml-3 font-serif">BMI introduction</h1>
-                <p className="text-[0.9rem] ml-3 text-justify mr-6 mt-6 text-gray-100 font-serif mb-[4rem]">
+                <h1 className="ml-3 font-roboto">BMI introduction</h1>
+                <p className="text-[0.9rem] ml-3 text-justify mr-6 mt-6 text-gray-100 font-roboto mb-[4rem]">
                     BMI is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height. Specifically, the value obtained from the calculation of BMI is used to categorize whether a person is underweight, normal weight, overweight, or obese depending on what range the value falls between. These ranges of BMI vary based on factors such as region and age, and are sometimes further divided into subcategories such as severely underweight or very severely obese. Being overweight or underweight can have significant health effects, so while BMI is an imperfect measure of healthy body weight, it is a useful indicator of whether any additional testing or action is required. Refer to the table below to see the different categories based on BMI that are used by the calculator.
                 </p>
 
-                <h1 className="ml-3 font-serif mt-6 mb-4">BMI table for adults</h1>
-                <p className="text-[0.9rem] ml-3 justify-center mt-6 text-gray-100 font-serif mb-[2rem]">This is the World Health Organization's (WHO) recommended body weight based on BMI values for adults. It is used for both men and women, age 20 or older.</p>
+                <h1 className="ml-3 font-roboto mt-6 mb-4">BMI table for adults</h1>
+                <p className="text-[0.9rem] ml-3 justify-center mt-6 text-gray-100 font-roboto mb-[2rem]">This is the World Health Organization's (WHO) recommended body weight based on BMI values for adults. It is used for both men and women, age 20 or older.</p>
                 {/* bmi table chart */}
-                <table className="w-1/4 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border mb-6 ml-4">
+                <table className="w-1/4 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border mb-6 ml-4 font-mono">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-gray-500">
                         <tr className="text-nowrap p-10 border">
                             <th className="text-white p-2">Classification</th>

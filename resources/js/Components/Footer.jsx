@@ -6,7 +6,7 @@ const currentYear = dateObj.getFullYear();
 export default function Footer(){
     return(
         <div>
-            <div className="p-[20px] mt-[100px] dark:text-white dark:bg-gray-900 w-full flex gap-10 justify-center">
+            <div className="p-[20px] mt-[100px] dark:text-white dark:bg-gray-900 w-full flex gap-10 justify-center font-mono">
                 <div className="flex flex-col gap-1 mr-[50px]">
                 <h4 className="text-lg mb-3 border-b border-violet-500">COMPANY INFORMATION</h4>
                     <Link href="/" className="text-white hover:text-cyan-300 underline">About</Link>
