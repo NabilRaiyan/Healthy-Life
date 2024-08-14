@@ -40,8 +40,8 @@ class CalculatorController extends Controller
             return back();
         }
         $data = $request->validate([
-            'weight' => ['required', 'numeric'],
-            'height' => ['required', 'numeric'],
+            'weight' => ['required', 'numeric', 'gt:0'],
+            'height' => ['required', 'numeric', 'gt:0.5'],
         ]);
 
         $weight = (float) $data['weight'];
