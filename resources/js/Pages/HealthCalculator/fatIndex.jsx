@@ -4,11 +4,8 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import InputLabel from "@/Components/InputLabel";
 import { useForm } from "@inertiajs/react";
 import Feature from "@/Components/Feature";
-import { GoDotFill } from "react-icons/go";
 import Footer from "@/Components/Footer";
 import MoreLink from "@/Components/MoreLink";
-import Dropdown from 'react-bootstrap/Dropdown';
-
 
 
 export default function FatIndex({answer, feature, age, gender, weight, height, children})

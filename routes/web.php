@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\FatCalculatorController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/health-calculator/fat-calculation', [FatCalculatorController::class, 'fatIndex'])->name('healthCalculator.fatIndex');
     Route::post('/health-calculator/fat-calculation', [FatCalculatorController::class, 'fatCalculate'])->name('healthCalculator.fatCalculate');
+
+
+    Route::get('/health-news', [NewsController::class, 'Index'])->name('health.newsIndex');
+    Route::post('/health-news', [NewsController::class, 'getNews'])->name('health.getNews');
+
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

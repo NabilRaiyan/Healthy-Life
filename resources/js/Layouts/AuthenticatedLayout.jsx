@@ -40,7 +40,7 @@ export default function Authenticated({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="#" active={route().current('/')}>
+                                <NavLink href={route('health.newsIndex')} active={route().current('health.newsIndex')}>
                                     Health News
                                 </NavLink>
                             </div>
