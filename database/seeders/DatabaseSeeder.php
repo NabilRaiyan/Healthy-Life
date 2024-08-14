@@ -76,6 +76,15 @@ class DatabaseSeeder extends Seeder
             'active' => true,
         ]);
 
+        Feature::create([
+            'image' => 'https://cdn.discordapp.com/attachments/1102451204614783006/1271861901323931699/filename.png?ex=66b8e133&is=66b78fb3&hm=c9ed8a4dc04c86f528bfcfbda4141cabdadeaf17ef6e3ff02ed28f3f6832b65d&',
+            'route_name' => 'health.newsIndex',
+            'name' => 'Fitness & Health News',
+            'description' => 'Fitness & Health news is a feature where you can scroll through the news about health and fitness.',
+            'required_plan' => 'basicFit',
+            'active' => true,
+        ]);
+
         Package::create([
             'name' =>'Basic Fit',
             'price' => 5,

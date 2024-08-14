@@ -38,6 +38,12 @@ export default function Authenticated({ user, header, children }) {
                                     Health Calculator
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href="#" active={route().current('/')}>
+                                    Health News
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">

@@ -78,6 +78,7 @@ class CalculatorController extends Controller
 
          $healthy_weightLow = number_format((float)$healthy_weightLow, 0, '.', '');
          $healthy_weightHigh = number_format((float)$healthy_weightHigh, 0, '.', '');
+         $required_plan = "basicFit";
 
 
         return to_route('healthCalculator.index')->with([

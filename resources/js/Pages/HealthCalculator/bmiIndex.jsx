@@ -54,8 +54,10 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
         { name: 'BMI', underweight: 18.5, normal: 6.5, overweight: 5, obese: 10 },
     ];
 
+    const required_plan = "basicFit";
+
     return (
-        <Feature feature={feature} answer={answer}>
+        <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
             <h1 className="text-xl dark:text-white text-gray-700 mt-3 ml-8">BMI Calculator</h1>
             <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3">
                 <div>
