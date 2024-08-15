@@ -1,13 +1,17 @@
 import Feature from "@/Components/Feature";
 import { Link } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function NewsIndex({ answer, feature, children }) {
+
+    const [count, setCount] = useState(1);
+
     const { data, processing, errors, reset, post, setData } = useForm({
-        limit: 10,
+        limit: count,
     });
 
+   
     // Function to submit the form and call the API
     const loadNews = () => {
         post(route('health.getNews'), {
@@ -17,26 +21,26 @@ export default function NewsIndex({ answer, feature, children }) {
         });
     };
 
-    // useEffect(()=>{
-    //     setData('limit', 5);
+    const incrementCount = () => {
+        setCount(prevCount => prevCount + 1);
+        loadNews();
+        console.log(count)
+    };
+    useEffect(()=>{
+        setData('limit', count);
+    }, []);
 
-    // }, [])
+    console.log(data.limit);
+    console.log(answer)
 
-    // console.log(data.limit)
 
-    // useEffect hook to call the API on first load
-
+   
     useEffect(() => {
         loadNews();
     }, []);
 
     const required_plan = "basicFit";
-    if(answer){
-        console.log(answer.data[0].title);
-        console.log(answer)
-    }
 
-    console.log(answer)
 
     return (
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
@@ -60,6 +64,11 @@ export default function NewsIndex({ answer, feature, children }) {
                     </div>
                 ))
             }
+            </div>
+            <div className="flex mt-6 mb-6 justify-center">
+                <button className="mt-2 px-4 py-2 bg-gray-800 text-center border hover:bg-gray-50 hover:text-gray-900 hover:border-gray-900 text-white rounded" onClick={incrementCount}>
+                        Load more news
+                </button>
             </div>
             {children}
         </Feature>
