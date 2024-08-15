@@ -52,7 +52,7 @@ class NewsController extends Controller
         $response = $client->request('GET', 'https://real-time-news-data.p.rapidapi.com/search',[
             'headers' => [
                 'Content-Type' => 'application/json',
-                'X-Rapidapi-Key' => '4178d25057msh84367dc264bd291p17bf08jsn229d8b2bb426',
+                'X-Rapidapi-Key' => '30e80c0d1amsh37cb263e05361d7p1fd42fjsn888d68ad4d69',
                 'Host'=> 'real-time-news-data.p.rapidapi.com',
             ],
             'query' => [

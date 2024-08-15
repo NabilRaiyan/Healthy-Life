@@ -21,17 +21,21 @@ export default function NewsIndex({ answer, feature, children }) {
         });
     };
 
+   
+   
+
+    console.log('limit: ',data.limit);
+
     const incrementCount = () => {
         setCount(prevCount => prevCount + 1);
-        loadNews();
-        console.log(count)
-    };
-    useEffect(()=>{
         setData('limit', count);
-    }, []);
 
-    console.log(data.limit);
-    console.log(answer)
+        // loadNews();
+        console.log('count: ', count)
+    };
+   
+    // console.log(data.limit);
+    // console.log(answer)
 
 
    
