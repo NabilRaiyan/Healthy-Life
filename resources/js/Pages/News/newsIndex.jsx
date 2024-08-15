@@ -10,32 +10,30 @@ export default function NewsIndex({ answer, feature, children }) {
     const { data, processing, errors, reset, post, setData } = useForm({
         limit: count,
     });
+    console.log('limit: ',data.limit);
 
    
     // Function to submit the form and call the API
     const loadNews = () => {
         post(route('health.getNews'), {
             onSuccess() {
-                reset();
+                // reset();
             }
         });
     };
 
-   
-   
 
-    console.log('limit: ',data.limit);
-
+ 
+    // Function to increment the count
     const incrementCount = () => {
         setCount(prevCount => prevCount + 1);
-        setData('limit', count);
-
-        // loadNews();
-        console.log('count: ', count)
     };
-   
-    // console.log(data.limit);
-    // console.log(answer)
+
+    // Update the limit in the form whenever `count` changes
+    useEffect(() => {
+    setData('limit', count);
+    loadNews(); // Load news with the updated limit
+    }, [count]); // Only run when `count` changes
 
 
    
