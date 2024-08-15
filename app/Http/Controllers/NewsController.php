@@ -39,17 +39,25 @@ class NewsController extends Controller
         if ($user->available_duration <= 0){
             return back();
         }
-        
+        // Validate the 'limit' field
+        $data = $request->validate([
+            'limit' => ['required', 'numeric'], // Specify the 'limit' field and its validation rules
+        ]);
+
+        // Convert the 'limit' value to an integer
+        $limit = (int) $data['limit'];
+
+
         $client = new Client();
         $response = $client->request('GET', 'https://real-time-news-data.p.rapidapi.com/search',[
             'headers' => [
                 'Content-Type' => 'application/json',
-                'X-Rapidapi-Key' => '1c1849698dmsh4ead14c76df84eep1bcf08jsnb8940baf8414',
+                'X-Rapidapi-Key' => '4178d25057msh84367dc264bd291p17bf08jsn229d8b2bb426',
                 'Host'=> 'real-time-news-data.p.rapidapi.com',
             ],
             'query' => [
                 'query' => 'Mens Fitness and Diet',
-                'limit' => 10,
+                'limit' => $limit,
                 'time_published' => 'anytime',
                 'country' => 'US',
                 'lang' => 'en',
