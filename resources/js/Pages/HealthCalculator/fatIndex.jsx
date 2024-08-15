@@ -101,7 +101,7 @@ export default function FatIndex({answer, feature, age, gender, weight, height, 
                                 <p className="ml-4 mt-2 text-xl font-sans text-amber-500"> Gender = {gender} </p>
                                 <h5 className="text-white text-2xl font-serif ml-4 mb-3">Result: </h5>
                                 <p className="ml-4 text-xl font-sans text-cyan-300">Body Fat = {answer}%</p>
-                    </div>
+                            </div>
                     )
                     }
 

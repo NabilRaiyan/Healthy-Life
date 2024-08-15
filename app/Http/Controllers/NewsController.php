@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FeatureResource;
 use App\Models\Feature;
 use App\Models\UsedFeature;
+use Error;
+use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
+
 class NewsController extends Controller
 {
+
     public ?Feature $feature = null;
 
 
@@ -28,19 +32,19 @@ class NewsController extends Controller
         ]);
 
     }
-
     public function getNews(Request $request)
-    {
+    {    
+
         $user = $request->user();
         if ($user->available_duration <= 0){
             return back();
         }
-
+        
         $client = new Client();
         $response = $client->request('GET', 'https://real-time-news-data.p.rapidapi.com/search',[
             'headers' => [
                 'Content-Type' => 'application/json',
-                'X-Rapidapi-Key' => '3d0b1df596msh84ed7a22c5b945ep1a5875jsnd51486d230c5',
+                'X-Rapidapi-Key' => '1c1849698dmsh4ead14c76df84eep1bcf08jsnb8940baf8414',
                 'Host'=> 'real-time-news-data.p.rapidapi.com',
             ],
             'query' => [
@@ -53,7 +57,7 @@ class NewsController extends Controller
         ]);
         $body = $response->getBody();
         $data = json_decode($body, true);
-
+        
 
         UsedFeature::create([
             'feature_id' => $this->feature->id,
