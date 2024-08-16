@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function NewsIndex({ answer, feature, children }) {
 
+    // adding count to reset the limit based on count
     const [count, setCount] = useState(1);
 
     // setting up the count based on user request 
