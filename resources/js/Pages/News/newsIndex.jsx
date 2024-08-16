@@ -7,6 +7,7 @@ export default function NewsIndex({ answer, feature, children }) {
 
     const [count, setCount] = useState(1);
 
+    // setting up the count based on user request 
     const { data, processing, errors, reset, post, setData } = useForm({
         limit: count,
     });
