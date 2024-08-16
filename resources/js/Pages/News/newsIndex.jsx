@@ -32,7 +32,7 @@ export default function NewsIndex({ answer, feature, children }) {
     // Update the limit in the form whenever `count` changes
     useEffect(() => {
     setData('limit', count);
-    loadNews(); // Load news with the updated limit
+    // loadNews(); // Load news with the updated limit
     }, [count]); // Only run when `count` changes
 
 

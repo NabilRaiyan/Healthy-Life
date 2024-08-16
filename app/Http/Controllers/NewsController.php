@@ -34,50 +34,53 @@ class NewsController extends Controller
     }
     public function getNews(Request $request)
     {    
-
-        $user = $request->user();
-        if ($user->available_duration <= 0){
-            return back();
-        }
-        // Validate the 'limit' field
-        $data = $request->validate([
-            'limit' => ['required', 'numeric'], // Specify the 'limit' field and its validation rules
-        ]);
-
-        // Convert the 'limit' value to an integer
-        $limit = (int) $data['limit'];
-
-
-        $client = new Client();
-        $response = $client->request('GET', 'https://real-time-news-data.p.rapidapi.com/search',[
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'X-Rapidapi-Key' => '30e80c0d1amsh37cb263e05361d7p1fd42fjsn888d68ad4d69',
-                'Host'=> 'real-time-news-data.p.rapidapi.com',
-            ],
-            'query' => [
-                'query' => 'Mens Fitness and Diet',
-                'limit' => $limit,
-                'time_published' => 'anytime',
-                'country' => 'US',
-                'lang' => 'en',
-            ],
-        ]);
-        $body = $response->getBody();
-        $data = json_decode($body, true);
+        try {
+            $user = $request->user();
+            if ($user->available_duration <= 0){
+                return back();
+            }
+            // Validate the 'limit' field
+            $data = $request->validate([
+                'limit' => ['required', 'numeric'], // Specify the 'limit' field and its validation rules
+            ]);
         
-
-        UsedFeature::create([
-            'feature_id' => $this->feature->id,
-            'user_id' =>$user->id,
-            'subscribed_plan' => $this->feature->required_plan,
-            'data' => $data,            
-        ]);
-
-        return to_route('health.newsIndex')->with([
-            'answer' => $data,
-        ]);  
-
-
+            // Convert the 'limit' value to an integer
+            $limit = (int) $data['limit'];
+        
+            $client = new Client();
+            $response = $client->request('GET', 'https://real-time-news-data.p.rapidapi.com/search', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Rapidapi-Key' => '30e80c0d1amsh37cb263e05361d7p1fd42fjsn888d68ad4d69',
+                    'Host' => 'real-time-news-data.p.rapidapi.com',
+                ],
+                'query' => [
+                    'query' => 'Mens Fitness and Diet',
+                    'limit' => $limit,
+                    'time_published' => 'anytime',
+                    'country' => 'US',
+                    'lang' => 'en',
+                ],
+            ]);
+        
+            $body = $response->getBody();
+            $data = json_decode($body, true);
+        
+            UsedFeature::create([
+                'feature_id' => $this->feature->id,
+                'user_id' => $user->id,
+                'subscribed_plan' => $this->feature->required_plan,
+                'data' => $data,
+            ]);
+        
+            return to_route('health.newsIndex')->with([
+                'answer' => $data,
+            ]);
+        
+        } catch (Exception $e) {
+            // Handle the exception
+            return back()->withErrors(['error' => 'An error occurred while fetching the news: ' . $e->getMessage()]);
+        }
+        
     }
 }
