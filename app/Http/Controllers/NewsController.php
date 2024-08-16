@@ -32,6 +32,8 @@ class NewsController extends Controller
         ]);
 
     }
+
+    // get news 
     public function getNews(Request $request)
     {    
         try {
