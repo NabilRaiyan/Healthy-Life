@@ -17,6 +17,7 @@ class NewsController extends Controller
     public ?Feature $feature = null;
 
 
+    // constructor 
     public function __construct()
     {
         $this->feature = Feature::where('route_name', 'health.newsIndex')
