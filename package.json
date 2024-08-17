@@ -20,6 +20,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@google/generative-ai": "^0.17.0",
         "bootstrap": "^5.3.3",
         "openai": "^4.55.9",
         "react-bootstrap": "^2.10.4",

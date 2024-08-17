@@ -3,6 +3,9 @@ import { Link } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
+
+
+// Gemini api key: AIzaSyAl_R41ZomsBFP08xE627b42KdP4r3pp64
 export default function NewsIndex({ answer, feature, children }) {
 
     // adding count to reset the limit based on count
