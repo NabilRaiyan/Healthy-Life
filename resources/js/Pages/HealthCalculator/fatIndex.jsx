@@ -6,7 +6,10 @@ import { useForm } from "@inertiajs/react";
 import Feature from "@/Components/Feature";
 import Footer from "@/Components/Footer";
 import MoreLink from "@/Components/MoreLink";
+import OpenAI from "openai";
 
+// open ai api
+//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
 
 export default function FatIndex({answer, feature, age, gender, weight, height, children})
 {
@@ -26,6 +29,8 @@ export default function FatIndex({answer, feature, age, gender, weight, height, 
             }
         });
     };
+
+
 
     const required_plan = "basicFit";
 
