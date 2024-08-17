@@ -66,7 +66,8 @@ class NewsController extends Controller
                     'lang' => 'en',
                 ],
             ]);
-        
+
+            
             $body = $response->getBody();
             $data = json_decode($body, true);
         

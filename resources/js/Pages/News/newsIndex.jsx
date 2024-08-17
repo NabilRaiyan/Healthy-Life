@@ -27,6 +27,7 @@ export default function NewsIndex({ answer, feature, children }) {
         });
     };
 
+
     // Function to increment the count
     const incrementCount = () => {
         setCount(prevCount => prevCount + 1);
@@ -38,12 +39,7 @@ export default function NewsIndex({ answer, feature, children }) {
     loadNews(); // Load news with the updated limit
     }, [count]); // Only run when `count` changes
 
-
-   
-   
-
     const required_plan = "basicFit";
-
 
     return (
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
