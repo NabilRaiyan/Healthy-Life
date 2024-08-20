@@ -1,7 +1,7 @@
 import Feature from "@/Components/Feature";
-import { Link } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import Footer from "@/Components/Footer";
 
 
 
@@ -75,6 +75,7 @@ export default function NewsIndex({ answer, feature, children }) {
                 </button>
             </div>
             {children}
+            <Footer/>
         </Feature>
     );
 }
