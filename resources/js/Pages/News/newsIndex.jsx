@@ -41,12 +41,13 @@ export default function NewsIndex({ answer, feature, children }) {
 
     const required_plan = "basicFit";
 
+
     return (
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
             <h2 className="text-white text-4xl ml-7 mb-6 mt-6 font-serif">Top News</h2>
-            <div className="mt-7">
+            <div className="mt-7" autoScroll={false}>
             {
-                answer !== null && answer.articles.id !== null && answer.articles.map((item, index)=>(
+                answer !== null && answer.articles.source !== null && answer.articles.map((item, index)=>(
                     <div className="flex mt-[10px] h-[280px] gap-6" key={index}>
 
                         <div className="text-white h-[500px] w-[400px] ml-8">
