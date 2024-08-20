@@ -15,7 +15,6 @@ export default function Feature({feature, answer, children, subscribedPlan})
             .trim(); // Remove any leading or trailing spaces
     }
     
-   
     return (
         <AuthenticatedLayout
             user={auth.user}
