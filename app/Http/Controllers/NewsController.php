@@ -52,18 +52,14 @@ class NewsController extends Controller
             $limit = (int) $data['limit'];
         
             $client = new Client();
-            $response = $client->request('GET', 'https://real-time-news-data.p.rapidapi.com/search', [
+            $response = $client->request('GET', 'https://newsapi.org/v2/everything', [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'X-Rapidapi-Key' => '30e80c0d1amsh37cb263e05361d7p1fd42fjsn888d68ad4d69',
-                    'Host' => 'real-time-news-data.p.rapidapi.com',
+                    'X-Api-Key' => env('NEWS_API_KEY'),
                 ],
                 'query' => [
-                    'query' => 'Mens Fitness and Diet',
-                    'limit' => $limit,
-                    'time_published' => 'anytime',
-                    'country' => 'US',
-                    'lang' => 'en',
+                    'q' => 'Fitness and Diet',
+                    'pageSize' => $limit,
                 ],
             ]);
 
