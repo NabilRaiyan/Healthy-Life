@@ -16,7 +16,6 @@ class NewsController extends Controller
 
     public ?Feature $feature = null;
 
-
     // constructor 
     public function __construct()
     {
