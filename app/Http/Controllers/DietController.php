@@ -25,6 +25,7 @@ class DietController extends Controller
         return inertia('Diet/DietPlan', [
             'feature' => new FeatureResource($this->feature),
             'prompt' => session('prompt'),
+            'answer' => session('answer'),
             
         ]);
     }
@@ -54,7 +55,7 @@ class DietController extends Controller
 
             return to_route('personalDiet.index')->with([
                 'prompt' => $prompt,
-               
+                'answer' => $data,
             ]);
         }
 

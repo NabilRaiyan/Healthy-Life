@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
-export default function DietPlan({feature, height, weight, age, goal, activity_level, gender, answer}){
+export default function DietPlan({feature, prompt, answer}){
     const {data, setData, processing, errors, reset, post} = useForm({
         prompt: "",
         
@@ -30,7 +30,7 @@ export default function DietPlan({feature, height, weight, age, goal, activity_l
 
     // google AI text generate
     async function googleText(){
-        const apiKey = "AIzaSyAXZRghqU58r-uFAzMdzqQ-0sfoDbygPSE";
+        // const apiKey = "AIzaSyAXZRghqU58r-uFAzMdzqQ-0sfoDbygPSE";
         const genModel = new GoogleGenerativeAI(apiKey);
         const model = genModel.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -42,20 +42,23 @@ export default function DietPlan({feature, height, weight, age, goal, activity_l
     }
     useEffect(() => {
         googleText();
-      }, []);
+    }, []);
 
     const required_plan = "basicFit";
 
     return (
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
-            <h1 className="text-xl dark:text-white text-gray-700 mt-3 ml-8 font-mono">Diet Plan</h1>
+            <h1 className="text-xl dark:text-white text-gray-700 mt-3 ml-8 font-mono">Chat with AI Bot</h1>
 
-            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3">
+            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[500px]">
+                <div>
+                    <InputLabel className="text-white font-mono text-lg">Enter Your Message</InputLabel>
+                    <TextInput className="w-full mt-4" placeholder="Message Health Bot"></TextInput>
+                </div>
 
 
-
-                <div className="flex items-center justify-end mt-4 col-span-2">
-                        <PrimaryButton className="ms-4 dark:bg-white dark:text-black" disabled={processing}>Get Diet</PrimaryButton>
+                <div className="flex items-center mt-9">
+                        <PrimaryButton className="ms-4 dark:bg-white dark:text-black" disabled={processing}>Send</PrimaryButton>
                 </div>
             </form>
 

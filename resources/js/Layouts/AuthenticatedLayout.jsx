@@ -47,7 +47,7 @@ export default function Authenticated({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('personalDiet.index')} active={route().current('personalDiet.index')}>
-                                    Diet Plan
+                                    Health Bot
                                 </NavLink>
                             </div>
                         </div>
