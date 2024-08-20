@@ -75,7 +75,7 @@ class DietController extends Controller
         }
 
         catch(Exception $e){
-
+            return back()->withErrors(['error' => 'An error occurred while fetching data: ' . $e->getMessage()]);
         }
     }
 }
