@@ -45,11 +45,11 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
                             </div>
 
-                            {/* <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('health.newsIndex')} active={route().current('health.newsIndex')}>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('personalDiet.index')} active={route().current('personalDiet.index')}>
                                     Diet Plan
                                 </NavLink>
-                            </div> */}
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">

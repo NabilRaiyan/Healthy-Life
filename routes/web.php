@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\DietController;
 use App\Http\Controllers\FatCalculatorController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/health-news', [NewsController::class, 'Index'])->name('health.newsIndex');
     Route::post('/health-news', [NewsController::class, 'getNews'])->name('health.getNews');
+
+    Route::get('/diet-plan', [DietController::class, 'dietIndex'])->name('personalDiet.index');
+    Route::post('/diet-plan', [DietController::class, 'dietPlan'])->name('diet.dietPlan');
+
+
 
 
 
