@@ -120,7 +120,7 @@ export default function DietPlan({feature, prompt, answer, children}){
             </div>
             
 
-            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[40px]">
+            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[10px]">
                 <div>
                     <InputLabel className="text-white font-mono text-lg">Enter Your Message</InputLabel>
                     <TextInput id="prompt" type="text" name="prompt" value={currentInput} // Use local state for input value
@@ -133,6 +133,7 @@ export default function DietPlan({feature, prompt, answer, children}){
                 </div>
                 {children}
             </form>
+            <Footer />
 
         </Feature>
     )
