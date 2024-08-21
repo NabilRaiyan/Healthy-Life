@@ -129,7 +129,14 @@ export default function DietPlan({feature, prompt, answer, children}){
 
 
                 <div className="flex items-center mt-9">
-                        <PrimaryButton className="ms-4 dark:bg-white dark:text-black" disabled={processing} onClick={handleAddPrompt}>Send</PrimaryButton>
+                <PrimaryButton
+                    className={`p-2 text-white rounded ${currentInput.trim() === '' ? 'bg-gray-900 text-white cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700'}`}
+                    disabled={processing}
+                    onClick={handleAddPrompt}
+                    >
+                    Send
+                </PrimaryButton>
+
                 </div>
                 {children}
             </form>
