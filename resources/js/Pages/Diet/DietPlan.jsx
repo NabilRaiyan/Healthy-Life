@@ -115,7 +115,7 @@ export default function DietPlan({feature, prompt, answer, children}){
                                 {item.type === 'prompt' ? `You: ${item.content}` : `Bot: ${item.content}`}
                             </p>
                         </div>
-            ))}
+                    ))}
                     </div>
             </div>
             
