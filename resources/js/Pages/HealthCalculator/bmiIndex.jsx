@@ -18,6 +18,7 @@ export default function Index({ feature, answer, children, lowWeight, highWeight
     const submit = (e) => {
         e.preventDefault();
         post(route("healthCalculator.bmiCalculate"), {
+            preserveScroll: true,
             onSuccess() {
                 reset();
             }

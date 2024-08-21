@@ -43,9 +43,6 @@ class DietController extends Controller
                 
             ]);
 
-            $prompt = (float) $data['prompt'];
-    
-
             UsedFeature::create([
                 'feature_id' => $this->feature->id,
                 'user_id' => $user->id,
@@ -54,7 +51,7 @@ class DietController extends Controller
             ]);
 
             return to_route('personalDiet.index')->with([
-                'prompt' => [$prompt],
+                'prompt' => $data['prompt'],
                 'answer' => $data,
             ]);
         }

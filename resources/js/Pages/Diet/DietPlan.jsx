@@ -7,7 +7,7 @@ import { useForm } from "@inertiajs/react";
 import Feature from "@/Components/Feature";
 
 import Footer from "@/Components/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
@@ -15,11 +15,11 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export default function DietPlan({feature, prompt, answer, children}){
     const {data, setData, processing, errors, reset, post} = useForm({
         prompt: [],
-        answer: [],
-        
+        answer: [],        
     });
 
     const [currentInput, setCurrentInput] = useState('');
+
 
     // Handle input change
     const handleInputChange = (e) => {
@@ -36,12 +36,15 @@ export default function DietPlan({feature, prompt, answer, children}){
     const submit = (e) => {
         e.preventDefault();
         post(route("diet.dietPlan"), {
+            preserveScroll: true,
             onSuccess(){
                 // reset();
             }
         });
         googleText();
     }
+    
+    
 
     // formate message 
     function cleanAndOrderMessage(message) {
@@ -75,9 +78,7 @@ export default function DietPlan({feature, prompt, answer, children}){
         setData('answer', [...data.answer, cleanMessage]);
 
     }
-    // useEffect(() => {
-    //     googleText();
-    // }, []);
+
 
  
      // Ensure both arrays are defined and have the same length
@@ -100,9 +101,9 @@ export default function DietPlan({feature, prompt, answer, children}){
     const required_plan = "basicFit";
 
     return (
-        <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
+        <Feature preserveScroll feature={feature} answer={answer} subscribedPlan={required_plan} className='overscroll-none'>
             <h1 className="text-xl dark:text-white text-gray-700 mt-5 ml-8 font-mono">Chat with AI Bot</h1>
-            <div className="bg-gray-900 rounded-lg p-3 m-[20px] h-[500px] overflow-y-scroll">
+            <div className="bg-gray-900 rounded-lg p-3 m-[20px] h-[400px] overflow-y-scroll">
                 
                     <div>
                     {combined.map((item, index) => (
@@ -119,7 +120,7 @@ export default function DietPlan({feature, prompt, answer, children}){
             </div>
             
 
-            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[50px]">
+            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[40px]">
                 <div>
                     <InputLabel className="text-white font-mono text-lg">Enter Your Message</InputLabel>
                     <TextInput id="prompt" type="text" name="prompt" value={currentInput} // Use local state for input value
