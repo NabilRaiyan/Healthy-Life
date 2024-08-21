@@ -54,7 +54,7 @@ class DietController extends Controller
             ]);
 
             return to_route('personalDiet.index')->with([
-                'prompt' => $prompt,
+                'prompt' => [$prompt],
                 'answer' => $data,
             ]);
         }
