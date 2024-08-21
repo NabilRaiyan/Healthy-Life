@@ -66,18 +66,10 @@ export default function DietPlan({feature, prompt, answer, children}){
         const genModel = new GoogleGenerativeAI(apiKey);
         const model = genModel.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        let prompt = "";
-
-        
-        setData('prompt', [...data.prompt, prompt]);
-
-        const result = await model.generateContent(prompt);
+        const result = await model.generateContent(data.prompt);
         // console.log(result.response.text());
         const generatedText = result.response.text(); // Get the text from the response
         const cleanMessage = cleanAndOrderMessage(generatedText)
-
-
-
 
         // Update the answer array by adding the new generated text
         setData('answer', [...data.answer, cleanMessage]);
@@ -87,6 +79,22 @@ export default function DietPlan({feature, prompt, answer, children}){
     //     googleText();
     // }, []);
 
+ 
+     // Ensure both arrays are defined and have the same length
+     const prompts = data.prompt || [];
+     const answers = data.answer || [];
+
+
+    // Combine the prompts and answers arrays
+    const combined = [];
+
+    const maxLength = Math.min(prompts.length, answers.length);
+
+    for (let i = 0; i < maxLength; i++) {
+        combined.push({ type: 'prompt', content: prompts[i] });
+        combined.push({ type: 'answer', content: answers[i] });
+    }
+
 
 
     const required_plan = "basicFit";
@@ -95,22 +103,19 @@ export default function DietPlan({feature, prompt, answer, children}){
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
             <h1 className="text-xl dark:text-white text-gray-700 mt-5 ml-8 font-mono">Chat with AI Bot</h1>
             <div className="bg-gray-900 rounded-lg p-3 m-[20px] h-[500px] overflow-y-scroll">
-                {
-                    data.prompt !== null && data.prompt.map((prompt, index) => (
-                        <div className="text-gray-900 m-[20px] p-4 rounded bg-white w-[500px] text-justify leading-loose shadow-sm -z-10 shadow-orange-500" key={index}>
-                            <p className="text-sm font-mono">You: {prompt}</p>
-                            {
-                                data.answer !== null && data.answer.map((answer, index) => (
-                                    <div className="text-gray-900 m-[20px] p-4 rounded bg-white w-[500px] text-justify leading-loose shadow-sm -z-10 shadow-orange-500 " key={index}>
-                                        <p className="text-sm font-mono">Bot: {answer}</p>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    ))
-                    
-                }
                 
+                    <div>
+                    {combined.map((item, index) => (
+                        <div
+                            className={`text-gray-900 m-[20px] p-4 rounded w-[500px] text-justify leading-loose shadow-sm -z-10 shadow-orange-500 ${item.type === 'prompt' ? 'bg-blue-100' : 'bg-green-100'}`}
+                            key={index}
+                        >
+                            <p className="text-sm font-mono">
+                                {item.type === 'prompt' ? `You: ${item.content}` : `Bot: ${item.content}`}
+                            </p>
+                        </div>
+            ))}
+                    </div>
             </div>
             
 
