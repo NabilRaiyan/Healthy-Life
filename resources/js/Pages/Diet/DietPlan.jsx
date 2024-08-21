@@ -15,7 +15,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export default function DietPlan({feature, prompt, answer, children}){
     const {data, setData, processing, errors, reset, post} = useForm({
         prompt: "Hello",
-        answer: "",
+        answer: [],
         
     });
 
@@ -35,15 +35,18 @@ export default function DietPlan({feature, prompt, answer, children}){
     async function googleText(){
         // console.log(data.prompt)
 
-        const apiKey = "AIzaSyAXZRghqU58r-uFAzMdzqQ-0sfoDbygPSE";
-        const genModel = new GoogleGenerativeAI(apiKey);
-        const model = genModel.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // const apiKey = "AIzaSyAXZRghqU58r-uFAzMdzqQ-0sfoDbygPSE";
+        // const genModel = new GoogleGenerativeAI(apiKey);
+        // const model = genModel.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        const prompt = data.prompt;
+        // const prompt = data.prompt;
 
-        const result = await model.generateContent(prompt);
-        // console.log(result.response.text());
-        data.answer = result.response.text();
+        // const result = await model.generateContent(prompt);
+        // // console.log(result.response.text());
+        // const generatedText = result.response.text(); // Get the text from the response
+
+        // // Update the answer array by adding the new generated text
+        // setData('answer', [...data.answer, generatedText]);
 
     }
     useEffect(() => {
@@ -56,9 +59,10 @@ export default function DietPlan({feature, prompt, answer, children}){
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
             <h1 className="text-xl dark:text-white text-gray-700 mt-5 ml-8 font-mono">Chat with AI Bot</h1>
             {
-                data.answer !== null &&(
-                    <div className="text-white text-lg font-mono">{data.answer}</div>
-                )
+                data.answer !== null && data.answer.map((answer, index) => (
+                    <div key={index}>{answer}</div>
+                    
+                ))
             }
 
             <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[500px]">
