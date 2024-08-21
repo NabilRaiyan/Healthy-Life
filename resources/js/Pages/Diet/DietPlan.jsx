@@ -19,6 +19,7 @@ export default function DietPlan({feature, prompt, answer, children}){
         
     });
 
+
     const submit = (e) => {
         e.preventDefault();
         post(route("diet.dietPlan"), {
@@ -29,6 +30,19 @@ export default function DietPlan({feature, prompt, answer, children}){
         googleText();
     }
 
+    // formate message 
+    function cleanAndOrderMessage(message) {
+        // Remove asterisks
+        let cleanedMessage = message.replace(/\*\*/g, '').replace(/\*/g, '').replace(/\#\#/g, '').replace(/\#/g, '');
+    
+        // Convert list items to ordered list
+        cleanedMessage = cleanedMessage.replace(/(\n\s*)?(\* )/g, (match, p1) => {
+            const index = (cleanedMessage.substring(0, match.index).match(/(\d+\.\s)/g) || []).length + 1;
+            return `${p1 || '\n'}${index}. `;
+        });
+    
+        return cleanedMessage;
+    }
 
 
     // google AI text generate
@@ -44,25 +58,31 @@ export default function DietPlan({feature, prompt, answer, children}){
         const result = await model.generateContent(prompt);
         // console.log(result.response.text());
         const generatedText = result.response.text(); // Get the text from the response
+        const cleanMessage = cleanAndOrderMessage(generatedText)
+
+
+
 
         // Update the answer array by adding the new generated text
-        setData('answer', [...data.answer, generatedText]);
+        setData('answer', [...data.answer, cleanMessage]);
 
     }
     useEffect(() => {
         googleText();
     }, []);
 
+
+
     const required_plan = "basicFit";
 
     return (
         <Feature feature={feature} answer={answer} subscribedPlan={required_plan}>
             <h1 className="text-xl dark:text-white text-gray-700 mt-5 ml-8 font-mono">Chat with AI Bot</h1>
-            <div className="bg-gray-900 rounded-sm p-3 m-[20px] overflow-auto">
+            <div className="bg-gray-900 rounded-sm p-3 m-[20px] h-[500px] overflow-y-scroll">
                 {
                     data.answer !== null && data.answer.map((answer, index) => (
-                        <div className="text-gray-900 m-[20px] p-4 rounded bg-white" key={index}>
-                            <p className="text-lg font-mono text-clip text-wrap">Bot: {answer}</p>
+                        <div className="text-gray-900 m-[20px] p-4 rounded bg-white w-[500px] text-justify leading-loose" key={index}>
+                            <p className="text-sm font-mono">Bot: {answer}</p>
                         </div>
                         
                     ))
@@ -70,7 +90,7 @@ export default function DietPlan({feature, prompt, answer, children}){
             </div>
             
 
-            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[500px]">
+            <form onSubmit={submit} className="p-8 grid grid-cols-2 gap-3 mt-[50px]">
                 <div>
                     <InputLabel className="text-white font-mono text-lg">Enter Your Message</InputLabel>
                     <TextInput id="prompt" type="text" name="prompt" value={data.prompt} onChange={(e) => setData("prompt", e.target.value) } className="w-full mt-4" placeholder="Message Health Bot" />
