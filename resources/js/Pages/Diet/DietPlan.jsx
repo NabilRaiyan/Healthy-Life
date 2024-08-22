@@ -28,6 +28,7 @@ export default function DietPlan({feature, prompt, answer, children}){
 
     // Add prompt to the array
     const handleAddPrompt = () => {
+        
         setData('prompt', [...data.prompt, currentInput]);
         setCurrentInput(''); // Clear input field
     };
@@ -130,7 +131,7 @@ export default function DietPlan({feature, prompt, answer, children}){
 
                 <div className="flex items-center mt-9">
                 <PrimaryButton
-                    className={`p-2 text-white rounded ${currentInput.trim() === '' ? 'bg-gray-900 text-white cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700'}`}
+                    className="p-2 text-white rounded bg-gray-900"
                     disabled={processing}
                     onClick={handleAddPrompt}
                     >
