@@ -6,7 +6,9 @@ use App\Http\Resources\FeatureResource;
 use App\Http\Resources\PackageResource;
 use App\Models\Feature;
 use App\Models\Package;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CreditController extends Controller
 {
@@ -42,17 +44,28 @@ class CreditController extends Controller
                 'mode' => 'payment', 
                 'success_url' => route('credit.success', [], true),
                 'cancel_url' => route('credit.cancel', [], true),
-
                 ]);
 
+                Transaction::create([
+                    'status' => 'pending',
+                    'price' =>  $package->price,
+                    'duration_months' =>  $package->duration_days,
+                    'session_id' =>  $checkout_session->id,
+                    'user_id' =>  Auth::id(),
+                    'package_id' =>  $package->id,
+                ]);
+
+                return redirect($checkout_session->url);
+
     }
 
-    public function success(){
-
+    public function success(Package $package)
+    {
+        return to_route('credit.index')->with('success', "You have successfully buy the package " . $package->name);
     }
 
-    public function cancel(){
-
+    public function cancel(Package $package){
+        return to_route('credit.index')->with('error', "An error have occurred during purchasing " . $package->name);
     }
 
     public function webhook()
