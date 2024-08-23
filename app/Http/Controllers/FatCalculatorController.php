@@ -62,6 +62,7 @@ class FatCalculatorController extends Controller
 
         }
 
+        // adding to the used feature table
         UsedFeature::create([
             'feature_id' => $this->feature->id,
             'user_id' =>$user->id,
