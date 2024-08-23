@@ -18,6 +18,7 @@ class FatCalculatorController extends Controller
     }
 
 
+    // fat index 
     public function fatIndex()
     {
         return inertia('HealthCalculator/fatIndex', [
