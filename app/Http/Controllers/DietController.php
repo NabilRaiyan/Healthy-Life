@@ -30,6 +30,7 @@ class DietController extends Controller
         ]);
     }
 
+    // adding diet plan controller
     public function dietPlan(Request $request)
     {
         try{
