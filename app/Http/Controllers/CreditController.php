@@ -64,6 +64,8 @@ class CreditController extends Controller
         return to_route('credit.index')->with('success', "You have successfully buy the package " . $package->name);
     }
 
+
+    
     public function cancel(Package $package){
         return to_route('credit.index')->with('error', "An error have occurred during purchasing " . $package->name);
     }
