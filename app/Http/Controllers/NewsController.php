@@ -34,7 +34,7 @@ class NewsController extends Controller
 
     }
 
-    // get news 
+    // get news articles
     public function getNews(Request $request)
     {    
         try {
