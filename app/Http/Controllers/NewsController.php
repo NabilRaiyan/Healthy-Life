@@ -24,7 +24,7 @@ class NewsController extends Controller
             ->firstOrFail();
     }
 
-    //index function 
+    //index function
     public function Index()
     {
         return inertia('News/newsIndex', [
