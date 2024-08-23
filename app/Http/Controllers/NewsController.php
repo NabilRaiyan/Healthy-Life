@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
-
+// news controller
 class NewsController extends Controller
 {
 
