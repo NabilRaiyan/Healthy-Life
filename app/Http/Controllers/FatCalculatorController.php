@@ -32,6 +32,7 @@ class FatCalculatorController extends Controller
         ]);
     }
 
+    // fat calculation
     public function fatCalculate(Request $request)
     {
         $user = $request->user();
