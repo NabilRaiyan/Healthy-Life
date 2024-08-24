@@ -20,6 +20,7 @@ class DietController extends Controller
             ->firstOrFail();
     }
 
+    // diet index page
     public function dietIndex()
     {
         return inertia('Diet/DietPlan', [
