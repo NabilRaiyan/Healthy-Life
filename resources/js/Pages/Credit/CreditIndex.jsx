@@ -1,7 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import PackagePricingCard from "@/Components/PackagePricingCard";
-
 export default function CreditIndex({auth, success, error, features, packages}){
 
     const availableDuration = auth.user.available_duration;
@@ -28,16 +27,18 @@ export default function CreditIndex({auth, success, error, features, packages}){
                         {error}
                     </div>
                 }
-            </div>
 
-            <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg relative">
-                <div className="flex flex-col gap-3 items-center p-4">
-                    <img src="./image/time.avif" alt="duration days" className="w-[100px]" />
+                <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg relative mb-4">
+                    <div className="flex flex-col gap-3 items-center p-4">
+                    <img src="https://t4.ftcdn.net/jpg/05/88/54/09/240_F_588540994_Vw63Zb3Q00HuDMAwfEvz1SQUHpiXY2cY.jpg" alt="duration days" className="rounded w-[200px] h-[100px]" />
                     <h3 className="text-white text-2xl">You have {availableDuration} days</h3>
+                    </div>
                 </div>
-            </div>
 
             <PackagePricingCard packages={packages.data} features={features.data} />
+            </div>
+
+            
             </div>
 
 

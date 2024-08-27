@@ -56,7 +56,7 @@ export default function Authenticated({ user, header, children }) {
                         <span className='text-gray-600 flex gap-3 font-mono mr-3'>
                              Current Plan: {formatText(user.subscribed_plan)}
                         </span>
-                        <Link href='/' className='text-gray-700 py-1 px-3 rounded border transition-colors hover:text-white hover:bg-gray-800'>
+                        <Link href={route('package.index')} className='text-gray-700 py-1 px-3 rounded border transition-colors hover:text-white hover:bg-gray-800'>
                             Get New Plan
                         </Link>
                             <div className="ms-3 relative">

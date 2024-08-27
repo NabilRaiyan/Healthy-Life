@@ -43,8 +43,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/buy-package', [CreditController::class, 'index'])->name('package.index');
-    Route::get('/buy-package/success', [CreditController::class, 'success'])->name('package.success');
-    Route::get('/buy-package/cancel', [CreditController::class, 'cancel'])->name('package.cancel');
+    Route::get('/buy-package/success', [CreditController::class, 'success'])->name('credit.success');
+    Route::get('/buy-package/cancel', [CreditController::class, 'cancel'])->name('credit.cancel');
     Route::post('/buy-package/{package}', [CreditController::class, 'buyPackage'])->name('credit.buy');
 
 

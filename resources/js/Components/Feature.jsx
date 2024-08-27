@@ -33,7 +33,7 @@ export default function Feature({feature, answer, children, subscribedPlan})
                                 </svg>
                                 <div className="font-raleway">
                                     You need to purchase the {subscribed_plan} plan to continue with the feature. Go{" "}
-                                    <Link href="/" className="underline">
+                                    <Link href={route('package.index')} className="underline">
                                         Buy Plan
                                     </Link>
                                 </div>

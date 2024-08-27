@@ -13,11 +13,11 @@ class CreditController extends Controller
 {
     public function index()
     {
-        $package = Package::all();
-        $feature = Feature::where('active', true)->get();
+        $packages = Package::all();
+        $features = Feature::where('active', true)->get();
         return inertia("Credit/CreditIndex", [
-            'packages' => PackageResource::collection($package),
-            'features' => FeatureResource::collection($feature),
+            'packages' => PackageResource::collection($packages),
+            'features' => FeatureResource::collection($features),
             'success' => session('success'),
             'error' => session('error'),
         ]);
@@ -35,7 +35,7 @@ class CreditController extends Controller
                             'name' => $package->name . '_' .
                             $package->duration_days . ' days', 
                         ],
-                        'unit_amount' => $package->price, 
+                        'unit_amount' => $package->price * 100, 
                     ],
                     'quantity' => 1,
                 ]
