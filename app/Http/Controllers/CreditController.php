@@ -60,11 +60,11 @@ class CreditController extends Controller
 
     public function success(Package $package)
     {
-        return to_route('credit.index')->with('success', "You have successfully buy the package " . $package->name);
+        return to_route('package.index')->with('success', "You have successfully buy the package " . $package->name);
     }
 
     public function cancel(Package $package){
-        return to_route('credit.index')->with('error', "An error have occurred during purchasing " . $package->name);
+        return to_route('package.index')->with('error', "An error have occurred during purchasing " . $package->name);
     }
 
     public function webhook()
@@ -96,7 +96,7 @@ class CreditController extends Controller
                     $transaction->status = 'paid';
                     $transaction->save();
                     $transaction->user->available_duration += 
-                    $transaction->duration_days;
+                    $transaction->duration_months;
                     $transaction->user->save();
 
                 }
