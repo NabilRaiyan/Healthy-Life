@@ -7,6 +7,7 @@ use App\Http\Resources\PackageResource;
 use App\Models\Feature;
 use App\Models\Package;
 use App\Models\Transaction;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,6 +71,32 @@ class CreditController extends Controller
 
     public function webhook()
     {
+        $endpoint_webhook = env('STRIPE_WEBHOOK_KEY');
+        $payload = @file_get_contents('php://input');
+        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+        $event = null;
 
+        try{
+            $event = \Stripe\Webhook::constructEvent(
+                $payload,
+                $sig_header,
+                $endpoint_webhook
+            );
+        }catch(\UnexpectedValueException $e){
+            return response('', 400);
+
+        }catch(\Stripe\Exception\SignatureVerificationException $e){
+            return response('', 400);
+        }
+
+        switch ($event->type){
+            case 'checkout.session.completed':
+                $session = $event->data->object;
+
+                $transaction = Transaction::where('session_id', $session->id)->first();
+                if ($transaction && $transaction->status === 'pending'){
+                    $transaction->status = 'paid';
+                }
+        }
     }
 }
