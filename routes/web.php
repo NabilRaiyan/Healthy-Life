@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\CreditController;
 use App\Http\Controllers\DietController;
 use App\Http\Controllers\FatCalculatorController;
 use App\Http\Controllers\NewsController;
@@ -37,7 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/diet-plan', [DietController::class, 'dietPlan'])->name('diet.dietPlan');
 
 
-
+    Route::get('/buy-package', [CreditController::class, 'index'])->name('package.index');
+    Route::get('/buy-package/success', [CreditController::class, 'success'])->name('package.success');
+    Route::get('/buy-package/cancel', [CreditController::class, 'cancel'])->name('package.cancel');
+    Route::post('/buy-package/{package}', [CreditController::class, 'buyPackage'])->name('credit.buy');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
