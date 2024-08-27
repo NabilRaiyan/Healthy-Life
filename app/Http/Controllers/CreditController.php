@@ -7,8 +7,6 @@ use App\Http\Resources\PackageResource;
 use App\Models\Feature;
 use App\Models\Package;
 use App\Models\Transaction;
-use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CreditController extends Controller
