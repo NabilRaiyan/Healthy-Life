@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('/buy-package/webhook', [CreditController::class, 'webhook'])->name('credit.webhook');
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/health-calculator', [CalculatorController::class, 'index'])->name('healthCalculator.index');
     Route::post('/health-calculator', [CalculatorController::class, 'bmiCalculate'])->name('healthCalculator.bmiCalculate');
