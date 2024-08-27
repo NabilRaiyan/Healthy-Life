@@ -96,7 +96,14 @@ class CreditController extends Controller
                 $transaction = Transaction::where('session_id', $session->id)->first();
                 if ($transaction && $transaction->status === 'pending'){
                     $transaction->status = 'paid';
+                    $transaction->save();
+                    $transaction->user->available_duration += 
+                    $transaction->duration_days;
+                    $transaction->user->save();
+
                 }
         }
+
+        return response('');
     }
 }
