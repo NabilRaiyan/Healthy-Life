@@ -58,6 +58,7 @@ class CreditController extends Controller
 
     }
 
+    // success page
     public function success(Package $package)
     {
         return to_route('package.index')->with('success', "You have successfully buy the package " . $package->name);
