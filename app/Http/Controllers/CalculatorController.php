@@ -33,6 +33,7 @@ class CalculatorController extends Controller
         
     }
 
+    // bmi calculator
     public function bmiCalculate(Request $request)
     {
         $user = $request->user();
