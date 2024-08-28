@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Resources\FeatureResource;
 use App\Http\Resources\PackageResource;
 use App\Models\Feature;
