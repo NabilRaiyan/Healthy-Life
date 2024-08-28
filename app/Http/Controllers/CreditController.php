@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CreditController extends Controller
 {
+    //  index page
     public function index()
     {
         $packages = Package::all();
