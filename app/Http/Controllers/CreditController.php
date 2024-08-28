@@ -23,6 +23,7 @@ class CreditController extends Controller
         ]);
     }
 
+    // buy package page
     public function buyPackage(Package $package)
     {
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
