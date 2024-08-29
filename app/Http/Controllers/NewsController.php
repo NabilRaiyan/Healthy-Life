@@ -44,7 +44,7 @@ class NewsController extends Controller
             }
             // Validate the 'limit' field
             $data = $request->validate([
-                'limit' => ['required', 'numeric'], // Specify the 'limit' field and its validation rules
+                'limit' => ['required', 'numeric'], 
             ]);
         
             // Convert the 'limit' value to an integer
