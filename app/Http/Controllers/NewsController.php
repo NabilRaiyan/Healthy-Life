@@ -34,7 +34,7 @@ class NewsController extends Controller
 
     }
 
-    // get news articles
+    // get news articles form news api
     public function getNews(Request $request)
     {    
         try {
