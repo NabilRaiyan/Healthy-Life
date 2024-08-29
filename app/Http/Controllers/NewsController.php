@@ -66,6 +66,7 @@ class NewsController extends Controller
             $body = $response->getBody();
             $data = json_decode($body, true);
         
+            // creating used features and add them into the table
             UsedFeature::create([
                 'feature_id' => $this->feature->id,
                 'user_id' => $user->id,
