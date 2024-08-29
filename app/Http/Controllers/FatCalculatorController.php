@@ -12,7 +12,7 @@ class FatCalculatorController extends Controller
     public ?Feature $feature = null;
     public function __construct(Request $request)
     {
-        // getting all the features where active is true
+        // getting all the active features 
         $this->feature = Feature::where('route_name', 'healthCalculator.fatIndex')
             ->where('active', true)
             ->firstOrFail();
