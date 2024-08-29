@@ -21,7 +21,7 @@ class CalculatorController extends Controller
     }
     
 
-    // index page
+    // return index page
     public function index()
     {
         return inertia('HealthCalculator/bmiIndex', [
