@@ -7,7 +7,7 @@ use App\Models\Feature;
 use App\Models\Package;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 
 //  credit controller
 
@@ -103,6 +103,10 @@ class CreditController extends Controller
                     $transaction->user->available_duration += 200;
                     $transaction->user->subscribed_plan += "New Plan";
                     $transaction->user->save();
+                    Log::info('Transaction data', ['transaction' => $transaction]);
+                    Log::info('User data', ['user' => $transaction->user]);
+                    Log::info('Package data', ['package' => $transaction->package]);
+
 
                 }
         }
