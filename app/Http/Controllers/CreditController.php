@@ -8,7 +8,7 @@ use App\Models\Package;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 
 //  credit controller
 
@@ -73,43 +73,67 @@ class CreditController extends Controller
         return to_route('package.index')->with('error', "An error have occurred during purchasing " . $package->name);
     }
 
-    public function webhook(Package $package, User $user)
+    public function webhook()
     {
         $endpoint_webhook = env('STRIPE_WEBHOOK_KEY');
         $payload = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
-
-        try{
+    
+        try {
             $event = \Stripe\Webhook::constructEvent(
                 $payload,
                 $sig_header,
                 $endpoint_webhook
             );
-        }catch(\UnexpectedValueException $e){
+        } catch (\UnexpectedValueException $e) {
+            Log::error('Invalid payload');
             return response('', 400);
-
-        }catch(\Stripe\Exception\SignatureVerificationException $e){
+        } catch (\Stripe\Exception\SignatureVerificationException $e) {
+            Log::error('Invalid signature');
             return response('', 400);
         }
-
-        switch ($event->type){
+    
+        switch ($event->type) {
             case 'checkout.session.completed':
                 $session = $event->data->object;
-
+    
                 $transaction = Transaction::where('session_id', $session->id)->first();
-                if ($transaction && $transaction->status === 'pending'){
+                if ($transaction && $transaction->status === 'pending') {
                     $transaction->status = 'paid';
                     $transaction->save();
-                    $transaction->user->available_duration += $transaction->duration_months;
-                    $user->subscribed_plan = $package->name;
-                    echo $package->name;
-                    $transaction->user->save();
-
+    
+                    // Retrieve the package name using the relationship
+                    $packageName = $transaction->package->name;
+                    $user = $transaction->user;
+    
+                    if ($user) {
+                        Log::info('Updating user', [
+                            'user_id' => $user->id,
+                            'package_name' => $packageName
+                        ]);
+    
+                        // Update the user's subscribed plan and available duration
+                        $user->subscribed_plan = $packageName; // Save the package name
+                        $user->available_duration += ceil($transaction->package->duration_days / 30); // Convert days to months if needed
+                        $user->save();
+    
+                        Log::info('User updated successfully', [
+                            'user_id' => $user->id,
+                            'subscribed_plan' => $user->subscribed_plan,
+                            'available_duration' => $user->available_duration
+                        ]);
+                    } else {
+                        Log::error('User not found for transaction', ['transaction_id' => $transaction->id]);
+                    }
+                } else {
+                    Log::error('Transaction not found or already paid', ['session_id' => $session->id]);
                 }
+                break;
         }
-
-
+    
         return response('');
     }
+    
+
 }
