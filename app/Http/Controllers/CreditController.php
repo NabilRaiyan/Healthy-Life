@@ -6,6 +6,7 @@ use App\Http\Resources\PackageResource;
 use App\Models\Feature;
 use App\Models\Package;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -72,7 +73,7 @@ class CreditController extends Controller
         return to_route('package.index')->with('error', "An error have occurred during purchasing " . $package->name);
     }
 
-    public function webhook()
+    public function webhook(Package $package, User $user)
     {
         $endpoint_webhook = env('STRIPE_WEBHOOK_KEY');
         $payload = @file_get_contents('php://input');
@@ -100,8 +101,9 @@ class CreditController extends Controller
                 if ($transaction && $transaction->status === 'pending'){
                     $transaction->status = 'paid';
                     $transaction->save();
-                    $transaction->user->available_duration += 
-                    $transaction->duration_months;
+                    $transaction->user->available_duration += $transaction->duration_months;
+                    $user->subscribed_plan = $package->name;
+                    echo $package->name;
                     $transaction->user->save();
 
                 }
