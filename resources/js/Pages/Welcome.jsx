@@ -59,9 +59,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         <img src='https://img.freepik.com/free-vector/flat-health-infographics-athletes_23-2148203381.jpg?t=st=1725890664~exp=1725894264~hmac=15b376b2473dbbe762b99772351b9e146391d8fbedacffaca144a0b8eeb0252d&w=1060' />
                                     </div>
                                 </div>
-                            </div>
-
-                                           
+                            </div> 
                         </main>
 
                         <footer className="py-16 text-center text-sm text-black dark:text-black">
