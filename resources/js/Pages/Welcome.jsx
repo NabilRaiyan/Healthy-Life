@@ -49,12 +49,12 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <main className="mt-6">
                             <div className='flex flex-row gap-2'>
                                 <div className='w-1/2'>
-                                    <h1 className='text-gray-800 font-serif text-[5rem] ml-2'>
+                                    <h1 className='text-gray-800 font-serif text-[5rem] ml-2 text-wrap'>
                                         PERFECT SITE FOR YOUR HEALTHY LIFE
                                     </h1>
                                 </div>
                                 <div className='w-1/2'>
-                                    <div className='w-[500px] mt-8'>
+                                    <div className='w-[600px] mt-8'>
                                         <img src='https://img.freepik.com/free-vector/flat-health-infographics-athletes_23-2148203381.jpg?t=st=1725890664~exp=1725894264~hmac=15b376b2473dbbe762b99772351b9e146391d8fbedacffaca144a0b8eeb0252d&w=1060' />
                                     </div>
                                 </div>
