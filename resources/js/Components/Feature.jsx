@@ -21,7 +21,7 @@ export default function Feature({feature, answer, children, subscribedPlan})
             header={<h2 className="font-semibold font-mono text-xl text-gray-800 leading-tight">{feature.name}</h2>}
         >
             <Head title={feature.name} />
-
+            {/* main div */}
             <div className="py-10">
                 <div className="max-w-full mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
