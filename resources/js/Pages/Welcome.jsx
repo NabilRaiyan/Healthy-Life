@@ -16,10 +16,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                         <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                            <div className='inline w-28 p-2 font-bold text-center text-lg rounded-sm'>
+                            <div className='inline-flex w-28 p-2 font-bold text-center text-2xl rounded-sm'>
                                 <h1 className='text-orange-700 font-raleway'>My<span className='text-cyan-800 font-roboto'>Health</span></h1>
                             </div>
-                            <nav className="-mx-3 flex flex-1 justify-end">
+                            <nav className="-mx-3 justify-end col-span-2 inline-flex text-gray-800 font-serif font-semibold">
                                 {auth.user ? (
                                     <Link
                                         href={route('dashboard')}
