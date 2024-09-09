@@ -62,6 +62,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                             </div> 
                         </main>
 
+                        {/* footer section */}
                         <footer className="py-16 text-center text-sm text-black dark:text-black">
                                 Copyright by Raiyan AL Sutan 2024
                         </footer>
