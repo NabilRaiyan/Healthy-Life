@@ -16,8 +16,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                         <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                            <div className='bg-orange-100 inline w-28 p-2 font-mono text-center text-lg rounded-sm'>
-                                <h1 className='text-orange-700'>My<span className='text-cyan-800'>Health</span></h1>
+                            <div className='inline w-28 p-2 font-bold text-center text-lg rounded-sm'>
+                                <h1 className='text-orange-700 font-raleway'>My<span className='text-cyan-800 font-roboto'>Health</span></h1>
                             </div>
                             <nav className="-mx-3 flex flex-1 justify-end">
                                 {auth.user ? (
@@ -47,8 +47,15 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         </header>
 
                         <main className="mt-6">
-                            <div className=''>
-                                <img src='' />
+                            <div className='flex flex-col gap-2'>
+                                <div>
+                                    <h1>
+                                        PERFECT SITE FOR YOUR HEALTHY LIFE
+                                    </h1>
+                                </div>
+                                <div>
+                                    <img src='https://t3.ftcdn.net/jpg/02/57/59/66/240_F_257596657_5hjNlla9Jb8IF95Ug53ijIy1W1xjwxDs.jpg' />
+                                </div>
                             </div>
 
                                            
