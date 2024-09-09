@@ -72,46 +72,60 @@ class CreditController extends Controller
         return to_route('package.index')->with('error', "An error have occurred during purchasing " . $package->name);
     }
 
-    public function webhook()
+    public function webhook(Package $package)
     {
-        $endpoint_webhook = env('STRIPE_WEBHOOK_KEY');
-        $payload = @file_get_contents('php://input');
-        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-        $event = null;
 
-        try{
-            $event = \Stripe\Webhook::constructEvent(
-                $payload,
-                $sig_header,
-                $endpoint_webhook
-            );
-        }catch(\UnexpectedValueException $e){
-            return response('', 400);
+    $endpoint_webhook = env('STRIPE_WEBHOOK_KEY');
+    $payload = @file_get_contents('php://input');
+    $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+    $event = null;
 
-        }catch(\Stripe\Exception\SignatureVerificationException $e){
-            return response('', 400);
-        }
-
-        switch ($event->type){
-            case 'checkout.session.completed':
-                $session = $event->data->object;
-
-                $transaction = Transaction::where('session_id', $session->id)->first();
-                if ($transaction && $transaction->status === 'pending'){
-                    $transaction->status = 'paid';
-                    $transaction->save();
-                    $transaction->user->available_duration += 200;
-                    $transaction->user->subscribed_plan += "New Plan";
-                    $transaction->user->save();
-                    Log::info('Transaction data', ['transaction' => $transaction]);
-                    Log::info('User data', ['user' => $transaction->user]);
-                    Log::info('Package data', ['package' => $transaction->package]);
-
-
-                }
-        }
-
-
-        return response('');
+    try {
+        $event = \Stripe\Webhook::constructEvent(
+            $payload,
+            $sig_header,
+            $endpoint_webhook
+        );
+    } catch (\UnexpectedValueException $e) {
+        Log::error('Webhook Error: Invalid Payload', ['error' => $e->getMessage()]);
+        return response('', 400);
+    } catch (\Stripe\Exception\SignatureVerificationException $e) {
+        Log::error('Webhook Error: Signature Verification Failed', ['error' => $e->getMessage()]);
+        return response('', 400);
     }
+
+    if ($event->type === 'checkout.session.completed') {
+        $session = $event->data->object;
+
+        // Find the transaction
+        $transaction = Transaction::where('session_id', $session->id)->first();
+        
+        if ($transaction && $transaction->status === 'pending') {
+            // Retrieve the package associated with the transaction
+            $package = Package::find($transaction->package_id);
+
+            // Update the transaction
+            $transaction->status = 'paid';
+            $transaction->save();
+
+            // Update the user
+            $user = $transaction->user;
+            if ($package) {
+                $user->available_duration += ceil($package->duration_days / 30); // Convert days to months
+                $user->subscribed_plan = $package->name; // Update to current package's name
+                $user->save();
+
+                // Log details
+                Log::info('Transaction data', ['transaction' => $transaction]);
+                Log::info('User data', ['user' => $user]);
+                Log::info('Package data', ['package' => $package]);
+            } else {
+                Log::error('Package not found', ['package_id' => $transaction->package_id]);
+            }
+        }
+    }
+
+    return response('');
+}
+
 }
