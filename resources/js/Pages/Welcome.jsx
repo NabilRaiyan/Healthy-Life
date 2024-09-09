@@ -16,7 +16,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                         <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                            
+                            <div className='bg-orange-100 inline w-28 p-2 font-mono text-center text-lg rounded-sm'>
+                                <h1 className='text-orange-700'>My<span className='text-cyan-800'>Health</span></h1>
+                            </div>
                             <nav className="-mx-3 flex flex-1 justify-end">
                                 {auth.user ? (
                                     <Link
@@ -46,7 +48,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                         <main className="mt-6">
                             <div className=''>
-                                
+                                <img src='' />
                             </div>
 
                                            
