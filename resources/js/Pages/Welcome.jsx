@@ -46,6 +46,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                             </nav>
                         </header>
 
+                        {/* main div for home page */}
                         <main className="mt-6">
                             <div className='flex flex-row gap-2'>
                                 <div className='w-1/2'>
